@@ -9,7 +9,7 @@
     padding: 12px;
 }
 
-form {
+.auth-form {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -40,9 +40,9 @@ input.submit-input {
     border: 1px solid transparent;
     cursor: pointer;
     transition: all 1s ease;
-  }
+}
   
-  input.submit-input:hover {
+input.submit-input:hover {
     transition: all 1s ease;
     background-color: rgba(43, 44, 44, 0.8);
-  }
+}
