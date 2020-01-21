@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
+import history from '../../history';
 
 const LoginForm = () => {
-	const auth = (e) => {
-		let obj = e.target.parentElement.children;
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	const auth = () => {
 		let form = {
-			user: obj[0].value,
-			password: obj[1].value,
+			username,
+			password,
 		};
-		// localStorage.setItem('user', 'misha');
 		fetch('http://localhost:8000/login', {
 			method: 'POST',
 			headers: {
@@ -18,8 +20,9 @@ const LoginForm = () => {
 		})
 			.then(res => res.json())
 			.then(data => {
+				localStorage.setItem('token', data.accessToken);
 				console.log(data);
-				// history.push('/');
+				history.push('/');
 			})
 			.catch(err => console.error(err));
 	};
@@ -28,19 +31,16 @@ const LoginForm = () => {
 		return e.key === 'Enter' ? auth() : null;
 	}
 
-	return localStorage.getItem('user') ?
-		<Redirect to='/' />
-		:
-		(
-			<div>
-				<p className='admin-text'>Atom Space Admin Panel</p>
-				<div className="auth-form">
-					<input onKeyPress={keyPress} className='login' type="text" placeholder='Login' />
-					<input onKeyPress={keyPress} className='password' type="password" placeholder='Password' />
-					<input className='submit-input' type="submit" onClick={auth} value="Log in" />
-				</div>
+	return (
+		<div>
+			<p className='admin-text'>Atom Space Admin Panel</p>
+			<div className="auth-form">
+				<input onKeyPress={keyPress} onChange={(e) => setUsername(e.target.value)} className='login' type="text" placeholder='Login' />
+				<input onKeyPress={keyPress} onChange={(e) => setPassword(e.target.value)} className='password' type="password" placeholder='Password' />
+				<input className='submit-input' type="submit" onClick={auth} value="Log in" />
 			</div>
-		);
+		</div>
+	);
 }
 
 export default LoginForm;

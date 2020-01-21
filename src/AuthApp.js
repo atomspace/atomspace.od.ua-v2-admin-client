@@ -5,9 +5,8 @@ import LoginPage from './routes/LoginPage';
 import Main from './routes/Main';
 import './assets/styles/styles.scss';
 
-let authed = localStorage.getItem('user') === null;
-if (authed) localStorage.setItem('logged', false);
 function App() {
+  let authed = !!localStorage.getItem('token');
   return !authed ? (
     <Switch>
       <Route path='/login' component={LoginPage} exact />
@@ -17,8 +16,7 @@ function App() {
     :
     (
       <Switch>
-        <Route path='/:pagename' component={LoginPage} exact />
-        {/* <Route path='/logout' component={ LogoutPage } /> */}
+        <Route path='/' component={Main} exact />
         <Redirect to='/' />
       </Switch>
     );
