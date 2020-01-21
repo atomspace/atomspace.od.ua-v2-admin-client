@@ -1,7 +1,6 @@
 import React from 'react';
 
-export const MainPage = () => (
-    <div>
-        Something cool!!!
-    </div>
-)
+export const MainPage = () => {
+  console.log('MainPage');
+  return <div>Something cool!!!</div>;
+};

@@ -1,8 +1,11 @@
-import React from "react";
+import React from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
-export const LoginPage = () => (
-    <div className='login-page'>
-        <LoginForm/>
+export const LoginPage = () => {
+  console.log('LoginPage');
+  return (
+    <div className="login-page">
+      <LoginForm />
     </div>
-);
+  );
+};
