@@ -4,4 +4,11 @@
 
 body {
     background-image: url('../img/background-main.png');
+    background-attachment: fixed;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
 }

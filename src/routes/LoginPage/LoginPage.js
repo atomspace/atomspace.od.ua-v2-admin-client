@@ -1,8 +1,7 @@
 import React from 'react';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import { LoginForm } from '../../components/LoginForm/LoginForm';
 
 export const LoginPage = () => {
-  console.log('LoginPage');
   return (
     <div className="login-page">
       <LoginForm />

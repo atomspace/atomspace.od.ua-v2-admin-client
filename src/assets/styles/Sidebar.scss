@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+.sidebar{
+	width: 20vw;
+	height: 100vh;
+	background-color: $sidebar-content;
+	.user{
+		height: 10vh;
+	}
+	& > div{
+		height: 7vh;
+		color: white;
+	}
+}

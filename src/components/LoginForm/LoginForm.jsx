@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import history from '../../history';
 
-const LoginForm = () => {
+export const LoginForm = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -42,5 +42,3 @@ const LoginForm = () => {
 		</div>
 	);
 }
-
-export default LoginForm;
