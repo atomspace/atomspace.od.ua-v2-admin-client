@@ -9,6 +9,7 @@ import {
 import { LoginPage } from './routes/LoginPage/LoginPage';
 import { MainPage } from './routes/Main/MainPage';
 import './assets/styles/styles.scss';
+import './assets/styles/normalize/normalize.scss';
 import { ProtectedRoute } from './routes/ProtectedRoute/ProtectedRoute';
 
 function App() {
