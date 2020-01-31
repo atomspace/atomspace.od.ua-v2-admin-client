@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
 import history from '../../history';
 
 export const LoginForm = () => {
@@ -21,8 +20,8 @@ export const LoginForm = () => {
 			.then(res => res.json())
 			.then(data => {
 				localStorage.setItem('token', data.accessToken);
-				console.log(data);
-				history.push('/');
+				history.push('/merch');
+				window.location.reload();
 			})
 			.catch(err => console.error(err));
 	};
