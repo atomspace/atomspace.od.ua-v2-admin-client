@@ -4,6 +4,29 @@
   width: 100%;
 }
 
+.add-item{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2em 0 1em 0;
+  .add-img{
+    width: 2vw;
+    background-color: $grey;
+    border-radius: 100%;
+    padding: 10px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    &:hover{
+      background-color: gray;
+    }
+  }
+  img{
+    width: 100%;
+  }
+}
+
+
 .grid-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -17,7 +40,7 @@
     background: $back-content;
     background-clip: content-box;
     padding: 1.5em 15%;
-    height: 40vh;
+    height: 43vh;
     text-align: center;
     color: white;
     display: grid;

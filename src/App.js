@@ -11,6 +11,7 @@ import { NewsPage } from './routes/NewsPage/NewsPage';
 import './assets/styles/styles.scss';
 import './assets/styles/normalize/normalize.scss';
 import { ProtectedRoute } from './routes/ProtectedRoute/ProtectedRoute';
+import { MerchProvider } from './contexts/MerchContext';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
       <Switch>
         <Route path="/login" component={LoginPage} />
         <ProtectedRoute>
-          <Route path="/merch" component={MainPage} exact />
+          <MerchProvider>
+            <Route path="/merch" component={MainPage} exact />
+          </MerchProvider>
           <Route path="/news" component={NewsPage} exact />
           <Route path="/members" component={MainPage} exact />
           <Route path="/orders" component={MainPage} exact />

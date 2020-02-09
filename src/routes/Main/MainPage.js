@@ -1,30 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GridItem } from '../../components/GridItem/GridItem';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
+import { Modal } from '../../components/Modal/Modal';
+import { MerchContext } from '../../contexts/MerchContext';
+import plusImg from '../../assets/img/plus.svg';
 
 import '../../assets/styles/MainPage.scss';
 
 export const MainPage = () => {
-	const merches = [
-		{ id: 1, name: 'Shirt 1', price: 600 },
-		{ id: 2, name: 'Shirt 2', price: 200 },
-		{ id: 3, name: 'Shirt 3', price: 100 },
-		{ id: 4, name: 'Shirt 4', price: 700 },
-		{ id: 5, name: 'Shirt 5', price: 300 },
-		{ id: 6, name: 'Shirt 6', price: 400 }
-	];
+	const [modal, setModal] = useState(false);
+
+	const { addMerches } = useContext(MerchContext);
+	useEffect(() => {
+		fetch('http://localhost:8000/api/v1/get-all-merch')
+			.then(res => res.json())
+			.then(data => addMerches(data))
+			.catch(err => console.log(err));
+		return undefined;
+	});
 
 	return (
-		<div className='container'>
-			<Sidebar />
-			<div className='main-content'>
-				<div className='grid-items'>
-					{merches.map(merch => (
-						<GridItem key={merch.id} merch={merch} />
-					))}
-					<div className='add-item'>+++</div>
+		<MerchContext.Consumer>
+			{({ merches }) => (
+				<div className='container'>
+					<Sidebar />
+					<div className='main-content'>
+						<div className='add-item'><div className='add-img'><img src={plusImg} alt='Plus' /></div></div>
+						<div className='grid-items'>
+							{merches.map(merch => (
+								<GridItem key={merch.id} setModal={setModal} merch={merch} />
+							))}
+						</div>
+					</div>
+					<Modal modal={modal} setModal={setModal} />
 				</div>
-			</div>
-		</div>
+			)}
+		</MerchContext.Consumer>
 	);
 };
