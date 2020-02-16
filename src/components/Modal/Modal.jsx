@@ -31,27 +31,34 @@ export const Modal = ({ modal, setModal, data }) => {
 		return null;
 	}
 
-	const addNewMerch = merch => {
-		setLoading(true);
+	const addMerchPhoto = async photo => {
 		let form = new FormData();
-		form.append('name', merch.name);
-		form.append('price', merch.price);
-		// form.append('photo', file);
-		console.log(file);
-		fetch('http://localhost:8000/api/v1/add-new-merch', {
+		form.append('photo', photo);
+		await fetch('http://localhost:8000/api/v1/add-merch-photo', {
 			method: 'POST',
-			// headers: { 'Content-Type': 'multipart/form-data' },
 			body: form
 		})
 			.then(res => res.json())
+			.catch(err => err.json());
+	};
+
+	const addNewMerch = () => {
+		setLoading(true);
+		fetch('http://localhost:8000/api/v1/add-new-merch', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ ...newMerch, avatar_url: 'merch/' + file.name })
+		})
+			.then(res => res.json())
 			.then(data => {
+				addMerchPhoto(file);
 				setLoading(false);
 				return setModal(false);
 			})
 			.catch(err => {
 				setLoading(false);
 				return setModal(false);
-			});
+			})
 		return null;
 	}
 
@@ -68,8 +75,8 @@ export const Modal = ({ modal, setModal, data }) => {
 						<input className='password' type="number"
 							onChange={e => setNewMerch({ ...newMerch, price: +e.target.value })}
 							value={newMerch.price} placeholder='Price' />
-						<input type="file" onChange={e => setFile(e.target.files[0])} id='merch-img' />
-						<button style={{ display: loading ? 'none' : 'block' }} onClick={() => addNewMerch(newMerch)} className='submit-input'>Add</button>
+						<input name='merch-image' type="file" onChange={e => setFile(e.target.files[0])} id='merch-img' />
+						<button style={{ display: loading ? 'none' : 'block' }} onClick={() => addNewMerch()} className='submit-input'>Add</button>
 						<Loader loading={loading} />
 					</div>
 				)

@@ -8,9 +8,13 @@ import plusImg from '../../assets/img/plus.svg';
 import '../../assets/styles/MainPage.scss';
 
 export const MainPage = () => {
-	const [modal, setModal] = useState(false);
+	let [modal, setModal] = useState(false);
+	let { addMerches, merches, loading, setMerchToEdit } = useContext(MerchContext);
+	let [data, setData] = useState({
+		modal,
+		setModal
+	});
 
-	const { addMerches, merches, loading } = useContext(MerchContext);
 	useEffect(() => {
 		fetch('http://localhost:8000/api/v1/get-all-merch')
 			.then(res => res.json())
@@ -19,18 +23,36 @@ export const MainPage = () => {
 		return undefined;
 	}, [loading]);
 
+	const openModal = (e, merch = null) => {
+		let { className } = e.target.parentElement;
+		if (className === 'add-img' || className === 'add-item') {
+			setData({
+				...data,
+				type: 'add'
+			});
+			setModal(true);
+		} else {
+			setData({
+				...data,
+				type: 'edit',
+			});
+			setMerchToEdit(merch);
+			setModal(true);
+		}
+	};
+
 	return (
 		<div className='container'>
 			<Sidebar />
 			<div className='main-content'>
-				<div className='add-item'><div className='add-img'><img src={plusImg} alt='Plus' /></div></div>
 				<div className='grid-items'>
 					{merches.map(merch => (
-						<GridItem key={merch.id} setModal={setModal} merch={merch} />
+						<GridItem key={merch.id} openModal={openModal} merch={merch} />
 					))}
 				</div>
+				<div className='add-item'><div className='add-img' onClick={e => openModal(e)}><img src={plusImg} alt='Plus' /></div></div>
 			</div>
-			<Modal modal={modal} setModal={setModal} />
+			<Modal modal={modal} setModal={setModal} data={data} />
 		</div>
 	);
 };

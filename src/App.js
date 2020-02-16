@@ -3,6 +3,7 @@ import {
   Switch,
   Route,
   BrowserRouter as Router,
+  Redirect,
 } from 'react-router-dom';
 
 import { LoginPage } from './routes/LoginPage/LoginPage';
@@ -19,6 +20,7 @@ function App() {
       <Switch>
         <Route path="/login" component={LoginPage} />
         <ProtectedRoute>
+          <Route path="/"><Redirect to="merch" /></Route>
           <MerchProvider>
             <Route path="/merch" component={MainPage} exact />
           </MerchProvider>

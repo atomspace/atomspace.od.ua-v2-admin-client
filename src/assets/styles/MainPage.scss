@@ -5,18 +5,22 @@
 }
 
 .add-item{
-  width: 100%;
   display: flex;
   justify-content: center;
   padding: 2em 0 1em 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 1em 1em 0;
   .add-img{
-    width: 2vw;
+    width: 1.5vw;
     background-color: $grey;
     border-radius: 100%;
     padding: 10px;
     transition: 1s;
     display: flex;
     align-items: center;
+    justify-content: end;
     &:hover{
       background-color: gray;
     }
@@ -29,7 +33,7 @@
 
 .grid-items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   @media only screen and (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -39,7 +43,7 @@
   .grid-item{
     background: $back-content;
     background-clip: content-box;
-    padding: 1.5em 15%;
+    padding: 1.5em 8%;
     height: 43vh;
     text-align: center;
     color: white;
