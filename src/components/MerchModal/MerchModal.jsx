@@ -5,9 +5,9 @@ import { Loader } from '../Loader/Loader';
 
 import closeImg from '../../assets/img/close.svg';
 
-export const Modal = ({ modal, setModal, data }) => {
-	let className = modal ? 'modal-show' : 'modal-hide';
+export const MerchModal = ({ data, modal, setModal }) => {
 	let { type } = data;
+	let className = modal ? 'modal-show' : 'modal-hide';
 	const { merchToEdit, setMerchToEdit, loading, setLoading } = useContext(MerchContext);
 	const [newMerch, setNewMerch] = useState({ name: '', price: '' });
 	const [file, setFile] = useState('');

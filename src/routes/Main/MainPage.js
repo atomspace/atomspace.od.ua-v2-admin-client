@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GridItem } from '../../components/GridItem/GridItem';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
-import { Modal } from '../../components/Modal/Modal';
+import { MerchModal } from '../../components/MerchModal/MerchModal';
 import { MerchContext } from '../../contexts/MerchContext';
 import plusImg from '../../assets/img/plus.svg';
 
@@ -47,12 +47,12 @@ export const MainPage = () => {
 			<div className='main-content'>
 				<div className='grid-items'>
 					{merches.map(merch => (
-						<GridItem key={merch.id} openModal={openModal} merch={merch} />
+						<GridItem key={merch.id} openModal={openModal} item={merch} />
 					))}
 				</div>
 				<div className='add-item'><div className='add-img' onClick={e => openModal(e)}><img src={plusImg} alt='Plus' /></div></div>
 			</div>
-			<Modal modal={modal} setModal={setModal} data={data} />
+			<MerchModal modal={modal} setModal={setModal} data={data} />
 		</div>
 	);
 };

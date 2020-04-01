@@ -14,10 +14,12 @@
     flex-direction: column;
     width: 60%;
     margin: 0 auto;
+    & > input, textarea{
+        margin-top: 20px;
+    }
 }
 
 .login , .password {
-    margin-top: 20px;
     border: 0;
     border-radius: 7px;
     padding: 10px;
