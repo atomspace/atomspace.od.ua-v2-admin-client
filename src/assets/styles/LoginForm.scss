@@ -12,18 +12,20 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
+    & > input, textarea{
+        margin-top: 20px;
+    }
 }
 
 .login , .password {
-    margin-top: 20px;
     border: 0;
     border-radius: 7px;
     padding: 10px;
 }
 
-input.submit-input {
+.submit-input {
     margin: 3%;
     width: 100%;
     background-color: rgba(61, 62, 62, 0.8);
@@ -42,7 +44,7 @@ input.submit-input {
     transition: all 1s ease;
 }
   
-input.submit-input:hover {
+.submit-input:hover {
     transition: all 1s ease;
     background-color: rgba(43, 44, 44, 0.8);
 }

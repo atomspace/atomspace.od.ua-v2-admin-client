@@ -4,11 +4,52 @@
 	width: 20vw;
 	height: 100vh;
 	background-color: $sidebar-content;
-	.user{
-		height: 10vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	a {
+		text-decoration: none;
 	}
-	& > div{
+	
+	& > div > a > div, .logout, .user{
+		transition: 0.3s;
+		&:hover{
+			background-color: $grey;
+		}
+		& > .capitalize{
+			text-transform: capitalize;
+		}
 		height: 7vh;
 		color: white;
+		margin: 1em 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 1em;
+		& > .icon{
+			width: 20%;
+			img {
+				width: 100%;
+			}
+		}
+		& > p{
+			font-size: 1.5em;
+		}
+	}
+	
+	.atomspace > .icon{
+		padding: 0 1em;
+		& > img{
+			width: 100%;
+		}
+	}
+
+	.user{
+		height: 10vh;
+		border-bottom: 2px solid grey;
+		& > div{
+			transition: none;
+		}
 	}
 }
